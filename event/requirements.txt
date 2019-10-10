@@ -6,3 +6,5 @@ django-admin-interface
 django-seed
 pillow
 drf-dynamic-fields
+djangorestframework-api-key
+drf-yasg
