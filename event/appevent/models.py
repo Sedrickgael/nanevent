@@ -45,7 +45,6 @@ class Events(models.Model):
     id_commune = models.ForeignKey('Commune', on_delete=models.CASCADE, related_name='event_commune')
     compagnie_id = models.ForeignKey('Compagnie', on_delete=models.CASCADE, related_name='event_compagnie')
     id_categorie = models.ForeignKey('Categorie_event', on_delete=models.CASCADE, related_name='event_categorie')
-    statut = models.BooleanField(default=False)
     description  = models.CharField(max_length=255)
     lieu = models.CharField(max_length=255)
     date_udapte = models.DateField(auto_now=False,)
