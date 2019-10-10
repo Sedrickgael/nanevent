@@ -1,3 +1,9 @@
+from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
 class Compagnie(models.Model):
 
     nom_compagnie = models.CharField(max_length=255)
@@ -5,6 +11,9 @@ class Compagnie(models.Model):
     email = models.CharField(max_length=255)
     contact = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
+    statut = models.BooleanField(default=False)
+    date_udapte = models.DateField(auto_now=False,)
+    dat_add = models.DateField(auto_now=False, auto_now_add=False)
     
     def __str__(self):
         return self.nom_compagnie
@@ -18,6 +27,9 @@ class Compagnie(models.Model):
 class Commune(models.Model):
     
     nom = models.CharField(max_length=255)
+    statut = models.BooleanField(default=False)
+    date_udapte = models.DateField(auto_now=False,)
+    dat_add = models.DateField(auto_now=False, auto_now_add=False)
     
     def __str__(self):
         return self.nom
@@ -40,7 +52,7 @@ class Events(models.Model):
     lieu = models.CharField(max_length=255)
     date_udapte = models.DateField(auto_now=False,)
     dat_add = models.DateField(auto_now=False, auto_now_add=False)
-    statut = models.BooleanField()
+    statut = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nom_event
@@ -53,17 +65,26 @@ class Events(models.Model):
 
 
 class Users(models.Model):
-    
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')  # 1 user <---> 1 profil
+    # Champs suplementaires
     id_commune = models.ForeignKey('Commune', on_delete=models.CASCADE)
-    nom = models.CharField(max_length=255)
-    prenom = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    contact = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+    contacts = models.CharField(max_length=30, null=True)
     date_udapte = models.DateField(auto_now=False,)
     dat_add = models.DateField(auto_now=False, auto_now_add=False)
-    statut = models.BooleanField()
+    statut = models.BooleanField(default=False)
 
+    # Initialisation a la creation
+    
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, created, **kwargs):
+        
+        instance.profile.save()
     def __str__(self):
         return self.nom + self.prenom
 
@@ -78,7 +99,7 @@ class Categorie_event(models.Model):
     nom = models.CharField(max_length=255)
     date_udapte = models.DateField(auto_now=False,)
     dat_add = models.DateField(auto_now=False, auto_now_add=False)
-    statut = models.BooleanField()
+    statut = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nom
@@ -95,7 +116,7 @@ class Participants(models.Model):
     id_event = models.ForeignKey('Events', on_delete=models.CASCADE, related_name='participant_event')
     date_udapte = models.DateField(auto_now=False,)
     dat_add = models.DateField(auto_now=False, auto_now_add=False)
-    statut = models.BooleanField()
+    statut = models.BooleanField(default=False)
 
     # def __str__(self):
     #     return self.id_user
