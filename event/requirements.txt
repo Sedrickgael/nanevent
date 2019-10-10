@@ -5,4 +5,4 @@ django-admin-generator
 django-admin-interface
 django-seed
 pillow
-drf-dyanamic-fields
+drf-dynamic-fields
