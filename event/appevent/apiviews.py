@@ -27,6 +27,10 @@ class EventsViewset(viewsets.ModelViewSet):
     queryset = Events.objects.all()
     serializer_class = EventsSerializer
 
-class ParticipantsSerializer(viewsets.ModelViewSet):
+class ParticipantsViewset(viewsets.ModelViewSet):
     queryset = Participants.objects.all()
+    serializer_class = EventsSerializer
+
+class Image_eventViewset(viewsets.ModelViewSet):
+    queryset = Image_event.objects.all()
     serializer_class = EventsSerializer

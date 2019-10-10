@@ -3,6 +3,11 @@ from drf_dynamic_fields import DynamicFieldsMixin
 
 from .models import *
 
+class Image_eventSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
+    class Meta:
+        model = Image_event
+        fields = '__all__'
+
 class ParticipantsSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     class Meta:
         model = Participants
@@ -11,6 +16,7 @@ class ParticipantsSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
 
 class EventsSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     participant_event = ParticipantsSerializer(many=True, required=False)
+    images = Image_eventSerializer(many=True, required=False)
     class Meta:
         model = Events
         fields = '__all__'

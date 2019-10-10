@@ -39,9 +39,9 @@ class Commune(models.Model):
         managed = True
         verbose_name = 'Commune'
         verbose_name_plural = 'Communes'
+        
 
 class Events(models.Model):
-
     nom_event = models.CharField(max_length=50)
     date_debut = models.DateField(auto_now=False, auto_now_add=False)
     date_fin = models.DateField(auto_now=False, auto_now_add=False)
@@ -63,25 +63,46 @@ class Events(models.Model):
         verbose_name = 'Events'
         verbose_name_plural = 'Events'
 
+class Image_event(models.Model):
+    image_url = models.URLField()
+    event = models.ForeignKey('Events', related_name='images', on_delete=models.CASCADE)
+    date_udapte = models.DateField(auto_now=False,)
+    dat_add = models.DateField(auto_now=False, auto_now_add=False)
+    statut = models.BooleanField(default=False)
 
-class Users(models.Model):
+    def __str__(self):
+        return self.image_url
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Image_event'
+        verbose_name_plural = 'Image_events'
+
+
+
+
+
+class Utilisateurs(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')  # 1 user <---> 1 profil
     # Champs suplementaires
-    id_commune = models.ForeignKey('Commune', on_delete=models.CASCADE)
+    id_commune = models.ForeignKey('Commune', on_delete=models.CASCADE, related_name='user_commune')
     contacts = models.CharField(max_length=30, null=True)
     date_udapte = models.DateField(auto_now=False,)
     dat_add = models.DateField(auto_now=False, auto_now_add=False)
     statut = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.nom + self.prenom
+        return self.contacts
 
     class Meta:
         db_table = ''
         managed = True
-        verbose_name = 'Users'
-        verbose_name_plural = 'Users'
+        verbose_name = 'Utilisateurs'
+        verbose_name_plural = 'Utilisateurs'
+        
+        
         
 class Categorie_event(models.Model):
     
@@ -101,7 +122,7 @@ class Categorie_event(models.Model):
 
 class Participants(models.Model):
     
-    id_user = models.ForeignKey('Users', on_delete=models.CASCADE, related_name='participant_user')
+    id_user = models.ForeignKey('Utilisateurs', on_delete=models.CASCADE, related_name='participant_user')
     id_event = models.ForeignKey('Events', on_delete=models.CASCADE, related_name='participant_event')
     date_udapte = models.DateField(auto_now=False,)
     dat_add = models.DateField(auto_now=False, auto_now_add=False)
@@ -113,6 +134,5 @@ class Participants(models.Model):
     class Meta:
         db_table = ''
         managed = True
-        verbose_name = 'Participants'
-        verbose_name_plural = 'Participantss'
-        verbose_name_plural = 'Eventss'
+        verbose_name = 'Participant'
+        verbose_name_plural = 'Participants'
