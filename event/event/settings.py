@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# settings.py
+API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
+
 
 # Application definition
 
@@ -107,17 +110,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK  =  { 
-    "DEFAULT_PERMISSION_CLASSES" :  [ 
-        "rest_framework_api_key.permissions.HasAPIKey",
-    ] 
-}
+# REST_FRAMEWORK  =  { 
+#     "DEFAULT_PERMISSION_CLASSES" :  [ 
+#         "rest_framework_api_key.permissions.HasAPIKey",
+#     ] 
+# }
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr'
 
 TIME_ZONE = 'UTC'
 
