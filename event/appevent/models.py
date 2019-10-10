@@ -58,7 +58,7 @@ class Events(models.Model):
         db_table = ''
         managed = True
         verbose_name = 'Events'
-        verbose_name_plural = 'Eventss'
+        verbose_name_plural = 'Events'
 
 class Users(models.Model):
 
@@ -79,7 +79,7 @@ class Users(models.Model):
         db_table = ''
         managed = True
         verbose_name = 'Users'
-        verbose_name_plural = 'Userss'
+        verbose_name_plural = 'Users'
         
 class Categorie_event(models.Model):
     
