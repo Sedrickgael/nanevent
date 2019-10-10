@@ -42,9 +42,9 @@ class Commune(models.Model):
         
 
 class Events(models.Model):
-    nom_event = models.CharField(max_length=50)
-    date_debut = models.DateField(auto_now=False, auto_now_add=False)
-    date_fin = models.DateField(auto_now=False, auto_now_add=False)
+    nom_event = models.CharField(max_length=50,null=True)
+    date_debut = models.DateField(auto_now=False, auto_now_add=False,null=True)
+    date_fin = models.DateField(auto_now=False, auto_now_add=False,null=True)
     id_commune = models.ForeignKey('Commune', on_delete=models.CASCADE, related_name='event_commune')
     compagnie_id = models.ForeignKey('Compagnie', on_delete=models.CASCADE, related_name='event_compagnie')
     id_categorie = models.ForeignKey('Categorie_event', on_delete=models.CASCADE, related_name='event_categorie')
