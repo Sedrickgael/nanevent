@@ -25,3 +25,7 @@ class CommuneViewset(viewsets.ModelViewSet):
 class EventsViewset(viewsets.ModelViewSet):
     queryset = Vote.objects.all()
     serializer_class = EventsSerializer
+
+class articipantsSerializer(viewsets.ModelViewSet):
+    queryset = Vote.objects.all()
+    serializer_class = EventsSerializer
