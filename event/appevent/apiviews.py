@@ -3,7 +3,7 @@ from rest_framework import viewsets,filters
 # from drf_dynamic_fields import DynamicSearchFilter
 
 from .models import *
-from .serializers import ParticipantsSerializer, EventsSerializer, CommuneSerializer, Categorie_eventSerializer, CompagnieSerializer
+from .serializers import *
 
 # class DynamicSearchFilter(filters.SearchFilter):
 #     def get_search_fields(self, view, request):
