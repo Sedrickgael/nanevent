@@ -13,7 +13,9 @@ commune
 
 - id INT PRIMARY KEY AUTOINCREMENT,
 - nom VARCHAR,
+
 events
+
 - id INT PRIMARY KEY AUTOINCREMENT,
 - nom_event VARCHAR,
 - date_debut DATE,
@@ -24,7 +26,9 @@ events
 - statut VARCHAR,
 - description VARCHAR,
 - lieu VARCHAR
+
 users
+
 - id INT PRIMARY KEY AUTOINCREMENT,
 - id_commune FOREIGN KEY REFERENCES commune(id)
 - nom VARCHAR,
@@ -32,10 +36,14 @@ users
 - email VARCHAR,
 - contact VARCHAR,
 - password VARCHAR
+
 categorie_event
+
 - id INT PRIMARY KEY AUTOINCREMENT,
 - nom VARCHAR,
+
 participants
+
 - id INT PRIMARY KEY AUTOINCREMENT,
 - id_user FOREIGN KEY REFERENCES users(id),
 - id_event FOREIGN KEY REFERENCES events(id)
