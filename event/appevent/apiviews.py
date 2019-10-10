@@ -1,7 +1,7 @@
 
 from rest_framework import viewsets,filters
 
-from .models import .
+from .models import *
 from .serializers import ParticipantsSerializer, EventsSerializer, CommuneSerializer, Categorie_eventSerializer, CompagnieSerializer
 
 # class DynamicSearchFilter(filters.SearchFilter):
