@@ -1,1 +1,8 @@
-Django==2.2.6
+Django
+djangorestframework
+django-filter
+django-admin-generator
+django-admin-interface
+django-seed
+pillow
+drf-dyanamic-fields
