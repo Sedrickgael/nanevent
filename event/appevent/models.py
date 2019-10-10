@@ -22,7 +22,6 @@ class Compagnie(models.Model):
         verbose_name_plural = 'Compagnies'
         
 class Commune(models.Model):
-
     nom = models.CharField(max_length=255)
     date_udapte = models.DateField(auto_now=False,)
     dat_add = models.DateField(auto_now=False, auto_now_add=False)
