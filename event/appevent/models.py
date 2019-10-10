@@ -74,17 +74,6 @@ class Users(models.Model):
     dat_add = models.DateField(auto_now=False, auto_now_add=False)
     statut = models.BooleanField(default=False)
 
-    # Initialisation a la creation
-    
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, created, **kwargs):
-        
-        instance.profile.save()
     def __str__(self):
         return self.nom + self.prenom
 

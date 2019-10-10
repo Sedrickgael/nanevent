@@ -1,5 +1,6 @@
 
 from rest_framework import viewsets,filters
+# from drf_dynamic_fields import DynamicSearchFilter
 
 from .models import *
 from .serializers import ParticipantsSerializer, EventsSerializer, CommuneSerializer, Categorie_eventSerializer, CompagnieSerializer
@@ -10,18 +11,18 @@ from .serializers import ParticipantsSerializer, EventsSerializer, CommuneSerial
 
 
 class CompagnieViewset(viewsets.ModelViewSet):
-    filter_backends = (DynamicSearchFilter,)
-    queryset = Poll.objects.all()
+    # filter_backends = (DynamicSearchFilter,)
+    queryset = Compagnie.objects.all()
     serializer_class = CompagnieSerializer
 
 class Categorie_eventViewset(viewsets.ModelViewSet):
-    queryset = Choice.objects.all()
+    queryset = Categorie_event.objects.all()
     serializer_class = Categorie_eventSerializer
 
 class CommuneViewset(viewsets.ModelViewSet):
-    queryset = Vote.objects.all()
+    queryset = Commune.objects.all()
     serializer_class = CommuneSerializer
 
 class EventsViewset(viewsets.ModelViewSet):
-    queryset = Vote.objects.all()
+    queryset = Events.objects.all()
     serializer_class = EventsSerializer
