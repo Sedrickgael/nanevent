@@ -49,3 +49,7 @@ participants
 - id INT PRIMARY KEY AUTOINCREMENT,
 - id_user FOREIGN KEY REFERENCES users(id),
 - id_event FOREIGN KEY REFERENCES events(id)
+
+
+
+pDFzAROJ.02Z2pIqtgFbisvgrWX2JrTCFHxMuJ8KB : josué
