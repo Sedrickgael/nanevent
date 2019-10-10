@@ -16,7 +16,6 @@ class Compagnie(models.Model):
         verbose_name_plural = 'Compagnies'
         
 class Commune(models.Model):
-
     nom = models.CharField(max_length=255)
     
     def __str__(self):
