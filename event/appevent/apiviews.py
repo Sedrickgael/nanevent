@@ -27,6 +27,6 @@ class EventsViewset(viewsets.ModelViewSet):
     queryset = Events.objects.all()
     serializer_class = EventsSerializer
 
-class articipantsSerializer(viewsets.ModelViewSet):
-    queryset = Vote.objects.all()
+class ParticipantsSerializer(viewsets.ModelViewSet):
+    queryset = Participants.objects.all()
     serializer_class = EventsSerializer
