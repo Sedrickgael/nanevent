@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django_admin_generator',
     'rest_framework',
     'appevent',
+    "rest_framework_api_key",
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +62,7 @@ ROOT_URLCONF = 'event.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,6 +106,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK  =  { 
+    "DEFAULT_PERMISSION_CLASSES" :  [ 
+        "rest_framework_api_key.permissions.HasAPIKey",
+    ] 
+}
 
 
 # Internationalization
