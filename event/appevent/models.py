@@ -43,8 +43,8 @@ class Commune(models.Model):
 class Events(models.Model):
 
     nom_event = models.CharField(max_length=50)
-    date_debut = models.DateField(, auto_now=False, auto_now_add=False)
-    date_fin = models.DateField(, auto_now=False, auto_now_add=False)
+    date_debut = models.DateField(auto_now=False, auto_now_add=False)
+    date_fin = models.DateField(auto_now=False, auto_now_add=False)
     id_commune = models.ForeignKey('Commune', on_delete=models.CASCADE, related_name='event_commune')
     compagnie_id = models.ForeignKey('Compagnie', on_delete=models.CASCADE, related_name='event_compagnie')
     id_categorie = models.ForeignKey('Categorie_event', on_delete=models.CASCADE, related_name='event_categorie')
@@ -74,17 +74,6 @@ class Users(models.Model):
     dat_add = models.DateField(auto_now=False, auto_now_add=False)
     statut = models.BooleanField(default=False)
 
-    # Initialisation a la creation
-    
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, created, **kwargs):
-        
-        instance.profile.save()
     def __str__(self):
         return self.nom + self.prenom
 
